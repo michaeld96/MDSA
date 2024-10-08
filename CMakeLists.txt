@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.10)
+set(PROJECT_NAME MDSA)
+
+project(${PROJECT_NAME} VERSION 0.1)
+set(C_STANDARD 17)
+set(C_STANDARD_REQUIRED true)
+
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug)
+endif()
+
+file(GLOB SOURCE_FILES "src/*.c")
+
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+
+add_custom_target(run
+    COMMAND ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}
+    DEPENDS ${PROJECT_NAME}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
